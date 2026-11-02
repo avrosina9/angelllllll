@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مؤسسة أصدقاء الملائكة | الصفحة الرسمية</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- QRCode.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brandBlue: '#0f2b5c',
+                        brandRoyal: '#1d4ed8',
+                        brandGold: '#f59e0b',
+                        brandGoldDark: '#d97706',
+                        instaPayBg: '#0f172a',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        /* Ambient glowing background elements */
+        .bg-glow {
+            position: fixed;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .glow-1 { top: -50px; right: -50px; background: #1d4ed8; }
+        .glow-2 { bottom: -50px; left: -50px; background: #f59e0b; }
+
+        /* Custom glassmorphism card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Pulse animation for high priority donation card */
+        @keyframes subtlePulse {
+            0%, 100% { box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.25), 0 8px 10px -6px rgba(245, 158, 11, 0.1); }
+            50% { box-shadow: 0 20px 30px -5px rgba(245, 158, 11, 0.4), 0 12px 15px -6px rgba(245, 158, 11, 0.2); }
+        }
+
+        .donation-card {
+            animation: subtlePulse 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-slate-800 flex flex-col items-center justify-between p-4 sm:p-6 relative overflow-x-hidden">
+
+    <!-- Background Glow Effects -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+
+    <!-- Toast Notification System -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-16 opacity-0 transition-all duration-300 ease-in-out bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 border border-slate-700 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg" id="toast-icon"></i>
+        <span id="toast-message" class="text-sm font-semibold">تم النسخ بنجاح!</span>
+    </div>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-lg z-10 my-auto">
+        
+        <!-- Profile Header Card -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 shadow-xl text-center relative mb-5 border-t-4 border-t-brandGold">
+            <!-- Icon / Logo Badge -->
+            <div class="relative w-24 h-24 mx-auto mb-4">
+                <div class="w-full h-full bg-gradient-to-tr from-brandBlue to-brandRoyal rounded-2xl flex items-center justify-center text-white text-4xl shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <i class="fa-solid fa-hands-holding-child"></i>
+                </div>
+                <div class="absolute -bottom-2 -right-2 bg-brandGold text-slate-950 text-xs font-bold px-2.5 py-1 rounded-full shadow border-2 border-white flex items-center gap-1">
+                    <i class="fa-solid fa-heart text-[10px]"></i> خيرية
+                </div>
+            </div>
+
+            <!-- Title & Subtitle -->
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-brandBlue mb-1 tracking-tight">مؤسسة أصدقاء الملائكة</h1>
+            <p class="text-slate-600 text-sm font-semibold mb-3">الصفحة الرسمية لوسائل التواصل والتبرع</p>
+
+            <div class="inline-flex items-center gap-2 bg-blue-50 text-brandRoyal text-xs font-bold px-3 py-1.5 rounded-full border border-blue-100">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                مستعدون لاستقبال استفساراتكم وتبرعاتكم
+            </div>
+        </section>
+
+        <!-- InstaPay Donation Card (Featured Section) -->
+        <section class="donation-card glass-card rounded-3xl p-5 sm:p-6 mb-5 border border-amber-200 bg-gradient-to-b from-amber-50/50 to-white">
+            <div class="flex items-center justify-between mb-3 pb-3 border-b border-amber-100">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-xl bg-purple-900 text-white flex items-center justify-center font-black text-xs shadow">
+                        IPA
+                    </div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base leading-tight">التبرع عبر InstaPay</h2>
+                        <span class="text-xs text-amber-700 font-medium">الدفع اللحظي الآمن والمعتمد</span>
+                    </div>
+                </div>
+                <span class="bg-amber-100 text-amber-800 text-[11px] font-bold px-2.5 py-1 rounded-lg">طريقة مُفضلة</span>
+            </div>
+
+            <!-- IPA Display & Copy -->
+            <div class="bg-slate-900 text-white rounded-2xl p-3.5 mb-3 flex items-center justify-between gap-2 shadow-inner">
+                <div class="overflow-hidden">
+                    <span class="block text-[10px] text-slate-400 font-medium uppercase tracking-wider">عنوان الدفع اللحظي (IPA)</span>
+                    <span class="font-mono text-sm sm:text-base font-bold text-amber-400 select-all tracking-wide dir-ltr text-right" id="ipa-text">
+                        asdkaelmalyka@instapay
+                    </span>
+                </div>
+                <button onclick="copyIPA()" class="bg-slate-800 hover:bg-slate-700 active:scale-95 text-amber-400 hover:text-white px-3 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5 border border-slate-700 flex-shrink-0">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>نسخ</span>
+                </button>
+            </div>
+
+            <!-- Direct InstaPay Link Button -->
+            <a href="https://ipn.eg/S/asdkaelmalyka/instapay/7dtPmd" target="_blank" rel="noopener font-semibold" class="w-full bg-gradient-to-r from-amber-500 to-brandGold hover:from-amber-600 hover:to-brandGoldDark text-slate-950 font-extrabold py-3.5 px-4 rounded-xl shadow-md hover:shadow-lg transition-all transform active:scale-98 flex items-center justify-center gap-2 text-sm sm:text-base">
+                <i class="fa-solid fa-bolt text-slate-950"></i>
+                <span>انقر للتبرع المباشر عبر تطبيق InstaPay</span>
+                <i class="fa-solid fa-arrow-left text-xs opacity-75"></i>
+            </a>
+            <p class="text-[11px] text-center text-slate-500 mt-2 font-medium">Powered by InstaPay • اضغط الرابط لإرسال النقود فوراً</p>
+        </section>
+
+        <!-- Communication & Direct Actions -->
+        <section class="glass-card rounded-3xl p-5 mb-5 shadow-lg">
+            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 px-1 flex items-center gap-1.5">
+                <i class="fa-solid fa-phone-volume text-brandRoyal"></i>
+                <span>التواصل المباشر والواتساب</span>
+            </h3>
+
+            <div class="space-y-2.5">
+                <!-- WhatsApp Button -->
+                <a href="https://wa.me/201228489636" target="_blank" rel="noopener" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold p-3.5 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm">المحادثة عبر الواتساب</div>
+                            <div class="text-xs font-normal text-emerald-100 dir-ltr text-right">01228489636</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-left text-xs opacity-60 group-hover:-translate-x-1 transition-transform"></i>
+                </a>
+
+                <!-- Phone Numbers Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    <!-- Phone 1 -->
+                    <a href="tel:01203228446" class="bg-slate-100 hover:bg-blue-50 hover:border-blue-200 border border-slate-200/80 p-3 rounded-2xl transition-all flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-xl bg-brandRoyal/10 text-brandRoyal flex items-center justify-center text-base flex-shrink-0 group-hover:bg-brandRoyal group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <div class="text-xs text-slate-500 font-semibold">الهاتف الرئيسي</div>
+                            <div class="text-sm font-bold text-slate-800 dir-ltr text-right">01203228446</div>
+                        </div>
+                    </a>
+
+                    <!-- Phone 2 -->
+                    <a href="tel:01228489636" class="bg-slate-100 hover:bg-blue-50 hover:border-blue-200 border border-slate-200/80 p-3 rounded-2xl transition-all flex items-center gap-3 group">
+                        <div class="w-9 h-9 rounded-xl bg-brandRoyal/10 text-brandRoyal flex items-center justify-center text-base flex-shrink-0 group-hover:bg-brandRoyal group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <div class="text-xs text-slate-500 font-semibold">خط إضافي</div>
+                            <div class="text-sm font-bold text-slate-800 dir-ltr text-right">01228489636</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Google Maps Location -->
+                <a href="https://maps.app.goo.gl/5kfxaLahbkyYoUNaA?g_st=iwb" target="_blank" rel="noopener" class="w-full bg-slate-100 hover:bg-rose-50 hover:border-rose-200 border border-slate-200/80 p-3.5 rounded-2xl transition-all flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-600 flex items-center justify-center text-lg flex-shrink-0 group-hover:bg-rose-600 group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-bold text-slate-800">موقع المؤسسة على الخريطة</div>
+                            <div class="text-xs text-slate-500">انقر لفتح الاتجاهات عبر خرائط Google</div>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400 group-hover:text-rose-600 transition-colors"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Social Media Platforms -->
+        <section class="glass-card rounded-3xl p-5 mb-5 shadow-lg">
+            <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 px-1 flex items-center gap-1.5">
+                <i class="fa-solid fa-share-nodes text-brandRoyal"></i>
+                <span>منصات التواصل الاجتماعي</span>
+            </h3>
+
+            <div class="grid grid-cols-3 gap-3">
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/share/hArsa9jZFX5x9kgJ/?mibextid=LQQJ4d" target="_blank" rel="noopener" class="flex flex-col items-center justify-center p-3.5 bg-blue-50/50 hover:bg-blue-600 hover:text-white border border-blue-100 rounded-2xl text-blue-600 transition-all duration-200 group text-center">
+                    <i class="fa-brands fa-facebook-f text-2xl mb-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">فيسبوك</span>
+                </a>
+
+                <!-- Instagram -->
+                <a href="https://www.instagram.com/angelsfriends8585?igsh=MTh3NG41Mml4MW52OA%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="flex flex-col items-center justify-center p-3.5 bg-pink-50/50 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 hover:text-white border border-pink-100 rounded-2xl text-pink-600 transition-all duration-200 group text-center">
+                    <i class="fa-brands fa-instagram text-2xl mb-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">إنستغرام</span>
+                </a>
+
+                <!-- YouTube -->
+                <a href="https://youtube.com/channel/UC2Yux2Hi40wXeWVaywmPaFA?si=ylNFSiucSvXXIdLv" target="_blank" rel="noopener" class="flex flex-col items-center justify-center p-3.5 bg-red-50/50 hover:bg-red-600 hover:text-white border border-red-100 rounded-2xl text-red-600 transition-all duration-200 group text-center">
+                    <i class="fa-brands fa-youtube text-2xl mb-1.5 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-bold">يوتيوب</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Utility Action Buttons -->
+        <section class="grid grid-cols-3 gap-2.5 mb-6">
+            <!-- Save Contact vCard -->
+            <button onclick="downloadVCard()" class="glass-card hover:bg-brandBlue hover:text-white border border-slate-200 p-3 rounded-2xl text-slate-700 font-semibold text-xs flex flex-col items-center gap-2 transition-all shadow-sm active:scale-95">
+                <i class="fa-solid fa-address-book text-base text-brandRoyal group-hover:text-white"></i>
+                <span>حفظ الاتصال</span>
+            </button>
+
+            <!-- Show QR Code Modal -->
+            <button onclick="openQRModal()" class="glass-card hover:bg-brandBlue hover:text-white border border-slate-200 p-3 rounded-2xl text-slate-700 font-semibold text-xs flex flex-col items-center gap-2 transition-all shadow-sm active:scale-95">
+                <i class="fa-solid fa-qrcode text-base text-brandRoyal group-hover:text-white"></i>
+                <span>رمز الـ QR</span>
+            </button>
+
+            <!-- Share Webpage -->
+            <button onclick="sharePage()" class="glass-card hover:bg-brandBlue hover:text-white border border-slate-200 p-3 rounded-2xl text-slate-700 font-semibold text-xs flex flex-col items-center gap-2 transition-all shadow-sm active:scale-95">
+                <i class="fa-solid fa-arrow-up-from-bracket text-base text-brandRoyal group-hover:text-white"></i>
+                <span>مشاركة</span>
+            </button>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center text-slate-500 text-xs font-medium space-y-1 pb-4">
+            <p>جميع الحقوق محفوظة © <span id="year"></span> لمؤسسة أصدقاء الملائكة</p>
+            <p class="text-[11px] text-slate-400">صفحة تعريفية تفاعلية وسريعة الاستجابة</p>
+        </footer>
+
+    </main>
+
+    <!-- QR Code Generator Modal -->
+    <div id="qr-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="glass-card bg-white rounded-3xl p-6 max-w-sm w-full text-center shadow-2xl transform scale-95 transition-transform duration-300 border border-slate-100" id="qr-modal-content">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+                <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                    <i class="fa-solid fa-qrcode text-brandRoyal"></i>
+                    <span>رمز QR للصفحة</span>
+                </h3>
+                <button onclick="closeQRModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <p class="text-xs text-slate-500 mb-4 font-medium">امسح الرمز بواسطة كاميرا الهاتف للوصول السريع لصفحة التواصل والتبرع</p>
+
+            <!-- QR Code Render Container -->
+            <div class="bg-slate-50 p-4 rounded-2xl inline-block border border-slate-200 shadow-inner mb-4 relative">
+                <div id="qrcode-canvas" class="flex justify-center"></div>
+            </div>
+
+            <div class="space-y-2">
+                <button onclick="downloadQRImage()" class="w-full bg-brandRoyal hover:bg-blue-800 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2 shadow-md">
+                    <i class="fa-solid fa-download"></i>
+                    <span>تنزيل صورة الرمز (PNG) للطباعة</span>
+                </button>
+                <button onclick="closeQRModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 px-4 rounded-xl text-xs transition">
+                    إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Set Current Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Toast Notification Trigger
+        let toastTimeout;
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.textContent = message;
+            if (isSuccess) {
+                toastIcon.className = "fa-solid fa-circle-check text-emerald-400 text-lg";
+            } else {
+                toastIcon.className = "fa-solid fa-circle-exclamation text-amber-400 text-lg";
+            }
+
+            toast.classList.remove('opacity-0', '-translate-y-16', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', '-translate-y-16', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Copy InstaPay Address
+        function copyIPA() {
+            const ipa = "asdkaelmalyka@instapay";
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(ipa).then(() => {
+                    showToast("تم نسخ عنوان InstaPay بنجاح!");
+                }).catch(() => {
+                    fallbackCopy(ipa);
+                });
+            } else {
+                fallbackCopy(ipa);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const input = document.createElement('input');
+            input.value = text;
+            document.body.appendChild(input);
+            input.select();
+            try {
+                document.execCommand('copy');
+                showToast("تم نسخ العنوان إلى الحافظة!");
+            } catch (err) {
+                showToast("تعذر النسخ التلقائي، يمكنك نسخه يدوياً", false);
+            }
+            document.body.removeChild(input);
+        }
+
+        // Download vCard (.vcf)
+        function downloadVCard() {
+            const vCardContent = [
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                'FN;CHARSET=UTF-8:مؤسسة أصدقاء الملائكة',
+                'ORG;CHARSET=UTF-8:مؤسسة أصدقاء الملائكة',
+                'TEL;TYPE=CELL:01203228446',
+                'TEL;TYPE=CELL:01228489636',
+                'NOTE;CHARSET=UTF-8:الصفحة الرسمية وسيلة التبرع InstaPay: asdkaelmalyka@instapay',
+                'URL:https://maps.app.goo.gl/5kfxaLahbkyYoUNaA',
+                'END:VCARD'
+            ].join('\n');
+
+            const blob = new Blob([vCardContent], { type: 'text/vcard;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'مؤسسة_أصدقاء_الملائكة.vcf');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showToast("جاري تحميل بطاقة الاتصال...");
+        }
+
+        // Share Webpage Functionality
+        async function sharePage() {
+            const shareData = {
+                title: 'مؤسسة أصدقاء الملائكة',
+                text: 'الصفحة الرسمية لوسائل التواصل والتبرع لمؤسسة أصدقاء الملائكة',
+                url: window.location.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    console.log('User cancelled share');
+                }
+            } else {
+                fallbackCopy(window.location.href);
+            }
+        }
+
+        // QR Code Logic
+        let qrCodeInstance = null;
+
+        function openQRModal() {
+            const modal = document.getElementById('qr-modal');
+            const modalContent = document.getElementById('qr-modal-content');
+            const qrContainer = document.getElementById('qrcode-canvas');
+
+            // Clear previous QR if any
+            qrContainer.innerHTML = '';
+
+            // Generate fresh QR Code pointing to current URL
+            const currentURL = window.location.href;
+            qrCodeInstance = new QRCode(qrContainer, {
+                text: currentURL,
+                width: 180,
+                height: 180,
+                colorDark: "#0f2b5c",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.classList.add('opacity-100');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+        }
+
+        function closeQRModal() {
+            const modal = document.getElementById('qr-modal');
+            const modalContent = document.getElementById('qr-modal-content');
+
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+        }
+
+        function downloadQRImage() {
+            const qrContainer = document.getElementById('qrcode-canvas');
+            const img = qrContainer.querySelector('img');
+            const canvas = qrContainer.querySelector('canvas');
+
+            let imageSrc = '';
+            if (img && img.src) {
+                imageSrc = img.src;
+            } else if (canvas) {
+                imageSrc = canvas.toDataURL('image/png');
+            }
+
+            if (imageSrc) {
+                const link = document.createElement('a');
+                link.href = imageSrc;
+                link.download = 'Angels_Friends_QR.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast("تم تنزيل صورة رمز الـ QR بنجاح!");
+            } else {
+                showToast("تعذر استخراج صورة الرمز", false);
+            }
+        }
+
+        // Close Modal when clicking backdrop
+        document.getElementById('qr-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeQRModal();
+            }
+        });
+    </script>
+</body>
+</html>
